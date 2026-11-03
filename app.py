@@ -41,16 +41,15 @@ def index():
 
 @app.route("/captcha", methods=["GET"])
 def get_captcha():
-token = request.headers.get('Authorization')
 
-    if not ACCESS_TOKEN or token != ACCESS_TOKEN:
-        return jsonify({"error": "Unauthorized"}), 401
-
-    
     """
     Endpoint: GET /captcha
     Generates a text challenge and saves the fuzzy image to disk.
     """
+token = request.headers.get('Authorization')
+
+    if not ACCESS_TOKEN or token != ACCESS_TOKEN:
+        return jsonify({"error": "Unauthorized"}), 401
     global current_captcha_answer
     current_captcha_answer = generate_random_text()
 
