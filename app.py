@@ -12,7 +12,10 @@ import string
 import os
 
 app = Flask(__name__)
-CORS(app)  # 2. Enable it for all routes
+CORS(app) 
+ACESS_TOKEN=os.environ.get("ACESS_TOKEN")
+
+# 2. Enable it for all routes
 
 # Ensure the 'static' folder exists for our images
 if not os.path.exists('static'):
@@ -38,6 +41,12 @@ def index():
 
 @app.route("/captcha", methods=["GET"])
 def get_captcha():
+token = request.headers.get('Authorization')
+
+    if not ACCESS_TOKEN or token != ACCESS_TOKEN:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    
     """
     Endpoint: GET /captcha
     Generates a text challenge and saves the fuzzy image to disk.
