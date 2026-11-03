@@ -11,9 +11,10 @@ import random
 import string
 import os
 
-app = Flask(__name__)
-CORS(app) 
-ACESS_TOKEN=os.environ.get("ACESS_TOKEN")
+app = Flask(name)
+CORS(app)
+
+ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN")
 
 # 2. Enable it for all routes
 
