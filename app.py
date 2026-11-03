@@ -11,7 +11,7 @@ import random
 import string
 import os
 
-app = Flask(name)
+app = Flask(__name__)
 CORS(app)
 
 ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN")
